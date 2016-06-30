@@ -1,19 +1,12 @@
-import { combineReducers, createStore } from 'redux';
-import { Provider } from 'react-redux';
-import TodoApp from './components/TodoApp';
-import todoApp from './reducers/index';
+import 'babel-polyfill';
+import React from 'react';
+import { render } from 'react-dom';
+import configureStore from './store/configureStore';
+import Root from './components/Root';
 
-const persistedState = {
-	todos: [{
-		id: '0',
-		text: 'Welcome back!',
-		completed: false
-	}]
-};
+const store = configureStore();
 
-ReactDOM.render(
-	<Provider store={createStore(todoApp, persistedState)}>
-		<TodoApp />
-	</Provider>,
+render(
+	<Root store={store} />,
 	document.getElementById('root')
 );
